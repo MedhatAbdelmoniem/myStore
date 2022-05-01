@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Products } from '../interfaces/products.interface';
+import { CurrentProductService } from '../services/currentProduct/current-product.service'
 
 @Component({
   selector: 'app-product-item',
@@ -14,9 +15,15 @@ export class ProductItemComponent implements OnInit {
     description: '',
     url: ''
   };
-  constructor() { }
+
+  selectedOption: number = 1;
+
+  constructor(private currentProduct: CurrentProductService) { }
 
   ngOnInit(): void {
   }
 
+  changeProductList(): void {
+    this.currentProduct.changeProduct(this.product);
+  }
 }

@@ -1,7 +1,7 @@
-<img src={{product.url}} alt={{product.name}}/>
+<img src={{product.url}} alt={{product.name}} (click)="changeProductList()" routerLink="/product"/>
 <h3>{{product.name}}</h3>
 <h4>{{product.price}}</h4>
-<select class="select-input">
+<select [(ngModel)]="selectedOption" class="select-input">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -9,6 +9,4 @@
     <option value="5">5</option>
     <option value="6">6</option>
 </select>
-<button>
-Add to cart
-</button>
+<a routerLink="/cart">Add to cart</a>

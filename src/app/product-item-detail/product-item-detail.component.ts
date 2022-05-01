@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Products } from '../interfaces/products.interface';
+import { CurrentProductService } from '../services/currentProduct/current-product.service';
 
 @Component({
   selector: 'app-product-item-detail',
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-item-detail.component.css']
 })
 export class ProductItemDetailComponent implements OnInit {
+  @Input() product: Products = {
+    id: 0,
+    name:'',
+    price: 0,
+    description: '',
+    url: ''
+  };
 
-  constructor() { }
+  selectedOption: number = 1;
+  constructor(private currentProduct: CurrentProductService) {
+    this.product = this.currentProduct.getProduct();
+   }
 
   ngOnInit(): void {
+    
   }
 
 }
