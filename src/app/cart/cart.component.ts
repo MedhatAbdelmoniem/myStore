@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Products } from '../interfaces/products.interface';
 import { CartDataService } from '../services/cartData/cart-data.service';
 import { Router } from '@angular/router';
+import { UserDataService } from '../services/userData/user-data.service';
 
 @Component({
   selector: 'app-cart',
@@ -15,7 +16,7 @@ export class CartComponent implements OnInit {
   address: string = '';
   price:number = 0;
   
-  constructor(private cartData: CartDataService, private router: Router) { 
+  constructor(private cartData: CartDataService, private router: Router, private userData: UserDataService) { 
     this.products = cartData.returnCartProducts();
     this.price = cartData.returnCartPrice();
 
@@ -39,6 +40,7 @@ export class CartComponent implements OnInit {
   }
   Success(): void {
     if(this.products.length > 0){
+      this.userData.AddInfo(this.name, this.price);
       this.router.navigateByUrl('/confirm')
     }
   }
