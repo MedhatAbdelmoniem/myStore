@@ -10,7 +10,8 @@ export class CurrentProductService {
     name:'',
     price: 0,
     description: '',
-    url: ''
+    url: '',
+    amount: 0
   };
   constructor() { }
     changeProduct(product: Products): void{

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Products } from '../interfaces/products.interface';
+import { CartDataService } from '../services/cartData/cart-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +10,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  name: string = '';
+  products: Products[] = [];
+  address: string = '';
+  price:number = 0;
+  
+  constructor(private cartData: CartDataService, private router: Router) { 
+    this.products = cartData.returnCartProducts();
+    this.price = cartData.returnCartPrice();
+
+  }
 
   ngOnInit(): void {
+  }
+
+  onChange(value: Event, product: Products):void {
+    let price: number = 0;
+    this.products.forEach(productItem => {
+      price += productItem.price * productItem.amount;
+    });
+    this.cartData.updatePrice(price);
+    this.price = this.cartData.returnCartPrice();
+  }
+
+  removeItem(product: Products): void {
+    this.cartData.RemoveFromCart(product.price * product.amount, product);
+    this.price = this.cartData.returnCartPrice();
+  }
+  Success(): void {
+    if(this.products.length > 0){
+      this.router.navigateByUrl('/confirm')
+    }
   }
 
 }

@@ -43,3 +43,23 @@ img {
     justify-content: center;
     margin-top: 64px;
   }
+
+  input {
+    width: 3%;
+  }
+
+  .input-form {
+    width: 10%;
+  }
+
+  button {
+    width: 5%;
+    background-color: rgb(74, 74, 252);
+    border: none;
+    box-sizing: border-box;
+    padding: 1%;
+    color: white;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: block;
+  }

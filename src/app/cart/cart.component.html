@@ -1,1 +1,20 @@
-<p>cart works!</p>
+<div >
+    <div class="cart-item-details" *ngFor="let product of products">
+        <img src={{product.url}} alt={{product.name}} />
+        <h3>{{product.name}}</h3>
+        <h4>${{product.price}}</h4>
+        <h4>amount:</h4> 
+        <input type="number" id="quantity" name="quantity" min="1" max="10" value={{product.amount}} [(ngModel)]="product.amount" (ngModelChange)="onChange($event, product)" > 
+        <button (click)="removeItem(product)">remove product</button>
+    </div>
+    <h1>Total price = ${{price}}</h1>
+    <form #form="ngForm" class="form-margin" (submit)="Success()">
+        <h3>Full Name</h3>
+        <input minlength="3" required name="Name" class="input-form"type="text" [(ngModel)]="name"/>
+        <h3>Address</h3>
+        <input minlength="5" required name="Address" class="input-form"type="text" [(ngModel)]="address"/>
+        <h3>Card Number</h3>
+        <input name="Card" class="input-form"type="text" />
+        <button [disabled]="form.invalid" type="submit" >Submit</button>
+    </form>
+</div>
