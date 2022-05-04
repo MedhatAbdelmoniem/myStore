@@ -14,7 +14,7 @@
         <h3>Address</h3>
         <input minlength="5" required name="Address" class="input-form"type="text" [(ngModel)]="address"/>
         <h3>Card Number</h3>
-        <input name="Card" class="input-form"type="text" />
+        <input name="Card" class="input-form" type="number" id="card-info"/>
         <button [disabled]="form.invalid" type="submit" >Submit</button>
     </form>
 </div>

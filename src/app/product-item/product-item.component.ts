@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Products } from '../interfaces/products.interface';
 import { CurrentProductService } from '../services/currentProduct/current-product.service'
 import { CartDataService } from '../services/cartData/cart-data.service';
@@ -17,6 +17,9 @@ export class ProductItemComponent implements OnInit {
     url: '',
     amount: 0
   };
+  liked:boolean = false;
+
+  @Output() likedItem: EventEmitter<boolean> = new EventEmitter;
 
   selectedOption: number = 1;
 
@@ -32,4 +35,10 @@ export class ProductItemComponent implements OnInit {
     this.cartData.AddToCart(this.product.price * this.selectedOption,this.product, this.selectedOption);
     alert('added to cart');
   }
+
+  like(){
+    this.likedItem.emit(this.liked);
+    this.liked = true;
+  }
+
 }

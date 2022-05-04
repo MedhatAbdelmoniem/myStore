@@ -15,11 +15,10 @@ export class CartComponent implements OnInit {
   products: Products[] = [];
   address: string = '';
   price:number = 0;
-  
   constructor(private cartData: CartDataService, private router: Router, private userData: UserDataService) { 
     this.products = cartData.returnCartProducts();
     this.price = cartData.returnCartPrice();
-
+    this.price =  parseFloat(this.price.toFixed(2));
   }
 
   ngOnInit(): void {
@@ -32,14 +31,18 @@ export class CartComponent implements OnInit {
     });
     this.cartData.updatePrice(price);
     this.price = this.cartData.returnCartPrice();
+    this.price =  parseFloat(this.price.toFixed(2));
   }
 
   removeItem(product: Products): void {
     this.cartData.RemoveFromCart(product.price * product.amount, product);
     this.price = this.cartData.returnCartPrice();
+    this.price =  parseFloat(this.price.toFixed(2));
   }
   Success(): void {
+    
     if(this.products.length > 0){
+      this.price =  parseFloat(this.price.toFixed(2));
       this.userData.AddInfo(this.name, this.price);
       this.router.navigateByUrl('/confirm')
     }

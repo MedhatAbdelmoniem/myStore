@@ -1,5 +1,6 @@
 <div class="product-index">
     <div class="product-container" *ngFor="let product of products">
-        <app-product-item [product]="product"></app-product-item>
+        <app-product-item (likedItem)="liking($event)" [product]="product"></app-product-item>
     </div>
+    <h3>you liked {{likes}} products</h3>
 </div>

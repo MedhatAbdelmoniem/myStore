@@ -10,7 +10,7 @@ import { Products } from '../interfaces/products.interface';
 export class ProductListComponent implements OnInit {
   
   products: Products[] = [];
-
+  likes: number = 0;
   constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
@@ -19,4 +19,9 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  liking(liked: boolean){
+    if(!liked){
+      this.likes++;
+    }
+  }
 }

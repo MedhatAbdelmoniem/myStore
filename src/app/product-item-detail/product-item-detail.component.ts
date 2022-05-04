@@ -30,5 +30,4 @@ export class ProductItemDetailComponent implements OnInit {
     this.cartData.AddToCart(this.product.price * this.selectedOption,this.product, this.selectedOption);
     alert('added to cart');
   }
-
 }
