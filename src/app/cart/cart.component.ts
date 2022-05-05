@@ -43,7 +43,7 @@ export class CartComponent implements OnInit {
   }
   Success(): void {
     
-    if(this.products.length > 0 && !isNaN(this.card)){
+    if(this.products.length > 0 && !isNaN(this.card) && this.card != 0){
       this.price =  parseFloat(this.price.toFixed(2));
       this.userData.AddInfo(this.name, this.price);
       this.cartData.ClearCart();
