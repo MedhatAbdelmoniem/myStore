@@ -15,6 +15,8 @@ export class CartComponent implements OnInit {
   products: Products[] = [];
   address: string = '';
   price:number = 0;
+  card: number = 0;
+
   constructor(private cartData: CartDataService, private router: Router, private userData: UserDataService) { 
     this.products = cartData.returnCartProducts();
     this.price = cartData.returnCartPrice();
@@ -41,7 +43,7 @@ export class CartComponent implements OnInit {
   }
   Success(): void {
     
-    if(this.products.length > 0){
+    if(this.products.length > 0 && !isNaN(this.card)){
       this.price =  parseFloat(this.price.toFixed(2));
       this.userData.AddInfo(this.name, this.price);
       this.cartData.ClearCart();
