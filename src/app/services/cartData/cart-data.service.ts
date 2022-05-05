@@ -52,4 +52,11 @@ export class CartDataService {
     this.ProductsInCartCounter--;
     this.numberChange.next(this.ProductsInCartCounter);
   }
+
+  ClearCart(): void {
+    this.totalPrice = 0;
+    this.productsInCart = [];
+    this.ProductsInCartCounter = 0;
+    this.numberChange.next(this.ProductsInCartCounter);
+  }
 }

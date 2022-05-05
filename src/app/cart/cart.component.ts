@@ -44,6 +44,7 @@ export class CartComponent implements OnInit {
     if(this.products.length > 0){
       this.price =  parseFloat(this.price.toFixed(2));
       this.userData.AddInfo(this.name, this.price);
+      this.cartData.ClearCart();
       this.router.navigateByUrl('/confirm')
     }
   }
